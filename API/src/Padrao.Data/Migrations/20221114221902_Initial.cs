@@ -1,5 +1,4 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore.Migrations;
+﻿using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
@@ -13,7 +12,8 @@ namespace Padrao.Data.Migrations
                 name: "Categorias",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(type: "TEXT", nullable: false),
+                    Id = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
                     Descricao = table.Column<string>(type: "TEXT", nullable: false),
                     Status = table.Column<bool>(type: "INTEGER", nullable: false)
                 },
@@ -26,7 +26,8 @@ namespace Padrao.Data.Migrations
                 name: "TiposImoveis",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(type: "TEXT", nullable: false),
+                    Id = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
                     Descricao = table.Column<string>(type: "TEXT", nullable: false),
                     Status = table.Column<bool>(type: "INTEGER", nullable: false)
                 },
@@ -39,11 +40,12 @@ namespace Padrao.Data.Migrations
                 name: "Imoveis",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(type: "TEXT", nullable: false),
+                    Id = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
                     Nome = table.Column<string>(type: "TEXT", nullable: false),
                     Descricao = table.Column<string>(type: "TEXT", nullable: false),
-                    TipoImovelId = table.Column<Guid>(type: "TEXT", nullable: false),
-                    CategoriaId = table.Column<Guid>(type: "TEXT", nullable: false)
+                    TipoImovelId = table.Column<int>(type: "INTEGER", nullable: false),
+                    CategoriaId = table.Column<int>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -66,10 +68,11 @@ namespace Padrao.Data.Migrations
                 name: "Fotos",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(type: "TEXT", nullable: false),
+                    Id = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
                     Descricao = table.Column<string>(type: "TEXT", nullable: false),
                     ImagemUrl = table.Column<string>(type: "TEXT", nullable: false),
-                    ImovelId = table.Column<Guid>(type: "TEXT", nullable: false)
+                    ImovelId = table.Column<int>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>
                 {

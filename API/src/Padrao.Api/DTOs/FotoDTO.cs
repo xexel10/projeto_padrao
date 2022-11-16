@@ -4,7 +4,7 @@ namespace Padrao.Api.DTOs;
 
 public class FotoDTO
 {
-    public Guid Id { get; set; }
+    public int Id { get; set; }
     public string Descricao { get; set; }
     public MultipartFormDataContent formData { get; set; }
     public string ImagemUrl { get; set; }

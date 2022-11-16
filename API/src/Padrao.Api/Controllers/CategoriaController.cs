@@ -31,8 +31,8 @@ namespace Padrao.Api.Controllers
 
         }
 
-        [HttpGet("{_id:guid}")]
-        public async Task<ActionResult<CategoriaDTO>> GetByID(Guid _id)
+        [HttpGet("{_id:int}")]
+        public async Task<ActionResult<CategoriaDTO>> GetByID(int _id)
         {
             var categoria = await _uof.CategoriaRepository.GetById(p => p.Id == _id);
 
@@ -54,8 +54,8 @@ namespace Padrao.Api.Controllers
             return Ok(categoriaDTO);
         }
 
-        [HttpPut("{_id:guid}")]
-        public async Task<ActionResult> Put(Guid _id, [FromBody] CategoriaDTO categoriaDto)
+        [HttpPut("{_id:int}")]
+        public async Task<ActionResult> Put(int _id, [FromBody] CategoriaDTO categoriaDto)
         {
 
 
@@ -79,8 +79,8 @@ namespace Padrao.Api.Controllers
         }
 
 
-        [HttpDelete("{id:guid}")]
-        public async Task<ActionResult<CategoriaDTO>> Delete(Guid _id)
+        [HttpDelete("{_id:int}")]
+        public async Task<ActionResult<CategoriaDTO>> Delete(int _id)
         {
 
             try

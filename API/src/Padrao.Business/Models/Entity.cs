@@ -1,12 +1,9 @@
 
+using System.ComponentModel.DataAnnotations;
 
 namespace Padrao.Business.Models;
     public abstract class Entity
     {
-        protected Entity()
-        {
-            Id = Guid.NewGuid();
-        }
-
-        public Guid Id { get; set; }
+        [Key]
+        public int Id { get; set; }
     }
