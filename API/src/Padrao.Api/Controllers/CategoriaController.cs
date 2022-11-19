@@ -1,7 +1,7 @@
 using Padrao.Api.DTOs;
 using Padrao.Business.Interfaces;
 using Padrao.Business.Models;
-using Padrao.Business.Repository;
+using Padrao.Data.Repository;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using AutoMapper;

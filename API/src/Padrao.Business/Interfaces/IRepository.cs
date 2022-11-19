@@ -1,6 +1,6 @@
 using System.Linq.Expressions;
 
-namespace Padrao.Business.Repository
+namespace Padrao.Business.Interfaces
 {
     public interface IRepository<T>
     {

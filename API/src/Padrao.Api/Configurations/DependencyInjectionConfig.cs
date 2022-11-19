@@ -3,11 +3,11 @@
 using AutoMapper;
 using Padrao.Api.DTOs.AutoMapper;
 using Padrao.Business.Interfaces;
-using Padrao.Business.Repository;
-using Padrao.Data.Context;
 using Padrao.Data.Repository;
-using Microsoft.Extensions.Options;
-using Swashbuckle.AspNetCore.SwaggerGen;
+using Padrao.Api.Contratos;
+using ProEventos.Application;
+
+using ProEventos.Application.Contratos;
 
 namespace Padrao.Api.Configurations;
 public static class DependencyInjectionConfig
@@ -28,6 +28,10 @@ public static class DependencyInjectionConfig
         services.AddSingleton(mapper);
 
         services.AddScoped<IUnitOfWork, UnitOfWork>();
+        services.AddScoped<IAccountService, AccountService>();
+        services.AddScoped<ITokenService, TokenService>();
+        services.AddScoped<IGeralPersist, GeralPersist>();
+        services.AddScoped<IUserPersist, UserPersist>();
 
         //services.AddTransient<IConfigureOptions<SwaggerGenOptions>, ConfigureSwaggerOptions>();
 

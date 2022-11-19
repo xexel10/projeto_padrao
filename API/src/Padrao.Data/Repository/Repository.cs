@@ -1,4 +1,4 @@
-using Padrao.Business.Repository;
+using Padrao.Business.Interfaces;
 using Padrao.Data.Context;
 using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;

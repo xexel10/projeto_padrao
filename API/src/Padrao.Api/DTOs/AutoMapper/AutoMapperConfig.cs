@@ -1,5 +1,6 @@
 using AutoMapper;
 using Padrao.Business.Models;
+using Padrao.Business.Models.Identity;
 
 namespace Padrao.Api.DTOs.AutoMapper
 {
@@ -9,6 +10,9 @@ namespace Padrao.Api.DTOs.AutoMapper
         {
             
             CreateMap<Categoria,CategoriaDTO>().ReverseMap();
+            CreateMap<User,UserDTO>().ReverseMap();
+            CreateMap<User,UserLoginDTO>().ReverseMap();
+            CreateMap<User,UserUpdateDTO>().ReverseMap();
         }
     }
 }
