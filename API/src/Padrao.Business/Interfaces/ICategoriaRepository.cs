@@ -1,9 +1,10 @@
 using Padrao.Business.Models;
 
-
-namespace Padrao.Business.Interfaces;
-public interface ICategoriaRepository : IRepository<Categoria>
+namespace Padrao.Business.Interfaces
 {
-     Task<IEnumerable<Categoria>> GetCategoriaByDesc(String _categoria);
-    Task<IEnumerable<Categoria>> GetAllCategorias();
+    public interface ICategoriaRepository : IRepository<Categoria>
+    {
+        Task<IEnumerable<Categoria>> GetCategoriaByDesc(String _categoria);
+        Task<IEnumerable<Categoria>> GetAllCategorias();
+    }
 }

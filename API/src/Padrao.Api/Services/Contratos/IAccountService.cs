@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 using Padrao.Api.DTOs;
 
-namespace Padrao.Api.Contratos
+namespace Padrao.Api.Services.Contratos
 {
     public interface IAccountService
     {

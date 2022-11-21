@@ -8,6 +8,8 @@ using AutoMapper;
 
 namespace Padrao.Api.Controllers
 {
+
+    [Authorize]
     [Route("api/[Controller]")]
     public class CategoriaController : MainController
     {

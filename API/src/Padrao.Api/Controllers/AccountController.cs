@@ -1,8 +1,7 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using ProEventos.Application.Contratos;
 using Padrao.Api.DTOs;
-using Padrao.Api.Contratos;
+using Padrao.Api.Services.Contratos;
 using ProEventos.API.Extensions;
 
 namespace Padrao.Api.Controllers

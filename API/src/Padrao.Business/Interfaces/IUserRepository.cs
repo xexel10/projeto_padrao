@@ -1,4 +1,3 @@
-using Padrao.Business.Interfaces;
 using Padrao.Business.Models.Identity;
 
 namespace Padrao.Business.Interfaces

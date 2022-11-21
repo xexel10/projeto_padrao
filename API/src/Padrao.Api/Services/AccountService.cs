@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using Padrao.Api.Contratos;
+using Padrao.Api.Services.Contratos;
 using Padrao.Api.DTOs;
 using Padrao.Business.Models.Identity;
 using Padrao.Business.Interfaces;
@@ -17,17 +17,17 @@ namespace ProEventos.Application
         private readonly UserManager<User> _userManager;
         private readonly SignInManager<User> _signInManager;
         private readonly IMapper _mapper;
-        private readonly IUserPersist _userPersist;
+        private readonly IUserRepository _userRepo;
 
         public AccountService(UserManager<User> userManager,
                               SignInManager<User> signInManager,
                               IMapper mapper,
-                              IUserPersist userPersist)
+                              IUserRepository userRepo)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _mapper = mapper;
-            _userPersist = userPersist;
+            _userRepo = userRepo;
         }
 
         public async Task<SignInResult> CheckUserPasswordAsync(UserUpdateDTO userUpdateDto, string password)
@@ -70,7 +70,7 @@ namespace ProEventos.Application
         {
             try
             {
-                var user = await _userPersist.GetUserByUserNameAsync(userName);
+                var user = await _userRepo.GetUserByUserNameAsync(userName);
                 if (user == null) return null;
 
                 var userUpdateDto = _mapper.Map<UserUpdateDTO>(user);
@@ -86,7 +86,7 @@ namespace ProEventos.Application
         {
             try
             {
-                var user = await _userPersist.GetUserByUserNameAsync(userUpdateDto.UserName);
+                var user = await _userRepo.GetUserByUserNameAsync(userUpdateDto.UserName);
                 if (user == null) return null;
 
                 userUpdateDto.Id = user.Id;
@@ -98,16 +98,10 @@ namespace ProEventos.Application
                     await _userManager.ResetPasswordAsync(user, token, userUpdateDto.Password);
                 }
 
-                _userPersist.Update<User>(user);
+                var userRetorno  = await _userManager.UpdateAsync(user);
 
-                if (await _userPersist.SaveChangesAsync())
-                {
-                    var userRetorno = await _userPersist.GetUserByUserNameAsync(user.UserName);
+                return _mapper.Map<UserUpdateDTO>(userRetorno);
 
-                    return _mapper.Map<UserUpdateDTO>(userRetorno);
-                }
-
-                return null;
             }
             catch (System.Exception ex)
             {

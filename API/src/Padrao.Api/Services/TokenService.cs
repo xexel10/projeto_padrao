@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.IdentityModel.Tokens;
 using Padrao.Api.DTOs;
 using Padrao.Business.Models.Identity;
-using ProEventos.Application.Contratos;
+using Padrao.Api.Services.Contratos;
 
 
 namespace ProEventos.Application

@@ -1,6 +1,6 @@
 using Padrao.Api.DTOs;
 
-namespace ProEventos.Application.Contratos
+namespace Padrao.Api.Services.Contratos
 {
     public interface ITokenService
     {

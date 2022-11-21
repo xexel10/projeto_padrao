@@ -4,10 +4,8 @@ using AutoMapper;
 using Padrao.Api.DTOs.AutoMapper;
 using Padrao.Business.Interfaces;
 using Padrao.Data.Repository;
-using Padrao.Api.Contratos;
+using Padrao.Api.Services.Contratos;
 using ProEventos.Application;
-
-using ProEventos.Application.Contratos;
 
 namespace Padrao.Api.Configurations;
 public static class DependencyInjectionConfig
@@ -24,14 +22,14 @@ public static class DependencyInjectionConfig
         {
             mc.AddProfile(new AutoMapperConfig());
         });
+        
         IMapper mapper = mappingConfig.CreateMapper();
         services.AddSingleton(mapper);
 
         services.AddScoped<IUnitOfWork, UnitOfWork>();
         services.AddScoped<IAccountService, AccountService>();
         services.AddScoped<ITokenService, TokenService>();
-        services.AddScoped<IGeralPersist, GeralPersist>();
-        services.AddScoped<IUserPersist, UserPersist>();
+        services.AddScoped<IUserRepository, UserRepository>();
 
         //services.AddTransient<IConfigureOptions<SwaggerGenOptions>, ConfigureSwaggerOptions>();
 

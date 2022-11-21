@@ -17,7 +17,7 @@ public static class SwaggerConfig
     {
         services.AddSwaggerGen(options =>
                 {
-                    options.SwaggerDoc("v1", new OpenApiInfo { Title = "ProEventos.API", Version = "v1" });
+                    options.SwaggerDoc("v1", new OpenApiInfo { Title = "Padrao.API", Version = "v1" });
                     options.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
                     {
                         Description = @"JWT Authorization header usando Bearer.

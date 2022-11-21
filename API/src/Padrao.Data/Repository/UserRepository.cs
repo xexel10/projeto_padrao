@@ -1,7 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Padrao.Business.Models.Identity;
 using Padrao.Data.Context;
@@ -9,11 +5,11 @@ using Padrao.Business.Interfaces;
 
 namespace Padrao.Data.Repository
 {
-    public class UserPersist : GeralPersist, IUserPersist
+    public class UserRepository : Repository<User>, IUserRepository
     {
         private readonly MeuDbContext _context;
 
-        public UserPersist(MeuDbContext context) : base(context)
+        public UserRepository(MeuDbContext context) : base(context)
         {
             _context = context;
         }
@@ -33,5 +29,6 @@ namespace Padrao.Data.Repository
             return await _context.Users
                                  .SingleOrDefaultAsync(user => user.UserName == userName.ToLower());
         }
+
     }
 }
