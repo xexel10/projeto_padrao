@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "Padrao-App": {
+    "padrao-app": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -69,10 +69,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "Padrao-App:build:production"
+              "browserTarget": "padrao-app:build:production"
             },
             "development": {
-              "browserTarget": "Padrao-App:build:development"
+              "browserTarget": "padrao-app:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -80,7 +80,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "Padrao-App:build"
+            "browserTarget": "padrao-app:build"
           }
         },
         "test": {
@@ -105,6 +105,6 @@
     }
   },
   "cli": {
-    "analytics": "b17e564a-91c1-408c-bbb6-8453aa514401"
+    "analytics": false
   }
 }
