@@ -65,6 +65,40 @@ namespace ProEventos.Application
                 throw new Exception($"Erro ao tentar Criar Usuário. Erro: {ex.Message}");
             }
         }
+        public async Task<UserUpdateDTO> UpdateAccount(UserUpdateDTO userUpdateDto)
+        {
+            try
+            {
+                var user = await _userRepo.GetUserByUserNameAsync(userUpdateDto.UserName);
+                if (user == null) return null;
+
+                userUpdateDto.Id = user.Id;
+
+                _mapper.Map(userUpdateDto, user);
+
+                if (userUpdateDto.Password != null)
+                {
+                    var token = await _userManager.GeneratePasswordResetTokenAsync(user);
+                    await _userManager.ResetPasswordAsync(user, token, userUpdateDto.Password);
+                }
+
+                var result = await _userManager.UpdateAsync(user);
+
+                if (result.Succeeded)
+                {
+                    var userToReturn = _mapper.Map<UserUpdateDTO>(user);
+                    return userToReturn;
+                }
+
+                return null;
+
+
+            }
+            catch (System.Exception ex)
+            {
+                throw new Exception($"Erro ao tentar atualizar usuário. Erro: {ex.Message}");
+            }
+        }
 
         public async Task<UserUpdateDTO> GetUserByUserNameAsync(string userName)
         {
@@ -82,32 +116,7 @@ namespace ProEventos.Application
             }
         }
 
-        public async Task<UserUpdateDTO> UpdateAccount(UserUpdateDTO userUpdateDto)
-        {
-            try
-            {
-                var user = await _userRepo.GetUserByUserNameAsync(userUpdateDto.UserName);
-                if (user == null) return null;
 
-                userUpdateDto.Id = user.Id;
-
-                _mapper.Map(userUpdateDto, user);
-
-                if (userUpdateDto.Password != null) {
-                    var token = await _userManager.GeneratePasswordResetTokenAsync(user);
-                    await _userManager.ResetPasswordAsync(user, token, userUpdateDto.Password);
-                }
-
-                var userRetorno  = await _userManager.UpdateAsync(user);
-
-                return _mapper.Map<UserUpdateDTO>(userRetorno);
-
-            }
-            catch (System.Exception ex)
-            {
-                throw new Exception($"Erro ao tentar atualizar usuário. Erro: {ex.Message}");
-            }
-        }
 
         public async Task<bool> UserExists(string userName)
         {
