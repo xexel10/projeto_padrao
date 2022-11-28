@@ -12,13 +12,13 @@ namespace Padrao.Api.Configurations
     {
         public static IServiceCollection AddApiConfig(this IServiceCollection services)
         {
-        services.AddControllers()
-                .AddJsonOptions(options =>
-                    options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter())
-                )
-                .AddNewtonsoftJson(options => options.SerializerSettings.ReferenceLoopHandling =
-                    Newtonsoft.Json.ReferenceLoopHandling.Ignore
-                );
+            services.AddControllers()
+                    .AddJsonOptions(options =>
+                        options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter())
+                    )
+                    .AddNewtonsoftJson(options => options.SerializerSettings.ReferenceLoopHandling =
+                        Newtonsoft.Json.ReferenceLoopHandling.Ignore
+                    );
 
 
             services.Configure<ApiBehaviorOptions>(options =>
@@ -38,13 +38,13 @@ namespace Padrao.Api.Configurations
 
 
                 options.AddPolicy("Production",
-                        builder =>
-                            builder
-                                .WithMethods("GET")
-                                .WithOrigins("https://http://localhost:4200")
-                                .SetIsOriginAllowedToAllowWildcardSubdomains()
-                                //.WithHeaders(HeaderNames.ContentType, "x-custom-header")
-                                .AllowAnyHeader());
+                    builder =>
+                        builder
+                            .WithMethods("GET")
+                            .WithOrigins("https://http://localhost:4200")
+                            .SetIsOriginAllowedToAllowWildcardSubdomains()
+                            //.WithHeaders(HeaderNames.ContentType, "x-custom-header")
+                            .AllowAnyHeader());
 
             });
 

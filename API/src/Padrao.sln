@@ -1,21 +1,18 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.30114.105
+# Visual Studio Version 17
+VisualStudioVersion = 17.2.32630.192
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Padrao.Business", "Padrao.Business\Padrao.Business.csproj", "{EEAE3C03-232D-4BF8-A1AC-503F1238B092}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Padrao.Business", "Padrao.Business\Padrao.Business.csproj", "{EEAE3C03-232D-4BF8-A1AC-503F1238B092}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Padrao.Data", "Padrao.Data\Padrao.Data.csproj", "{DB5F31F9-F513-4C01-BC5D-DD11D6C4ACD6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Padrao.Data", "Padrao.Data\Padrao.Data.csproj", "{DB5F31F9-F513-4C01-BC5D-DD11D6C4ACD6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Padrao.Api", "Padrao.Api\Padrao.Api.csproj", "{8E39E720-662B-4C47-A935-1BF55D70575D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Padrao.Api", "Padrao.Api\Padrao.Api.csproj", "{8E39E720-662B-4C47-A935-1BF55D70575D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
-	EndGlobalSection
-	GlobalSection(SolutionProperties) = preSolution
-		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{EEAE3C03-232D-4BF8-A1AC-503F1238B092}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -30,5 +27,11 @@ Global
 		{8E39E720-662B-4C47-A935-1BF55D70575D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8E39E720-662B-4C47-A935-1BF55D70575D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8E39E720-662B-4C47-A935-1BF55D70575D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {BF3E3972-152D-40BD-87EA-0D3D019B8D62}
 	EndGlobalSection
 EndGlobal
