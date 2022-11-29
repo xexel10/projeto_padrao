@@ -1,0 +1,21 @@
+version: '3.4'
+
+services:
+
+  padraoapi:
+    container_name: padraopi2
+    image: padrao-dev:latest
+    #build:
+      #context: .
+     # dockerfile: Dockerfile
+    networks:
+      - jof-network
+    ports:
+      - 8000:5000
+    volumes:
+      - ./db/:/root/db/
+
+networks:
+  jof-network:
+    driver: bridge
+
