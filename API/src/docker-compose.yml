@@ -4,7 +4,7 @@ services:
 
   padraoapi:
     container_name: padraopi2
-    image: padrao-dev:latest
+    image: xexel7/apipadrao2:latest
     #build:
       #context: .
      # dockerfile: Dockerfile
@@ -13,7 +13,7 @@ services:
     ports:
       - 8000:5000
     volumes:
-      - ./db/:/root/db/
+      - ./db:/app/db
 
 networks:
   jof-network:
