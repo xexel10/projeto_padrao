@@ -7,6 +7,8 @@ public class UnitOfWork : IUnitOfWork
 {
 
     private CategoriaRepository _categoriaRepo;
+    private TipoImovelRepository _tipoImovelRepo;
+    private ImovelRepository _imovelRepo;
     public MeuDbContext _context;
 
     public UnitOfWork(MeuDbContext contexto)
@@ -19,6 +21,22 @@ public class UnitOfWork : IUnitOfWork
         get
         {
             return _categoriaRepo = _categoriaRepo ?? new CategoriaRepository(_context);
+        }
+    }
+
+    public ITipoImovelRepository TipoImovelRepository
+    {
+        get
+        {
+            return _tipoImovelRepo = _tipoImovelRepo ?? new TipoImovelRepository(_context);
+        }
+    }
+
+    public IImovelRepository ImovelRepository
+    {
+        get
+        {
+            return _imovelRepo = _imovelRepo ?? new ImovelRepository(_context);
         }
     }
 

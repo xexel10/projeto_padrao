@@ -27,6 +27,7 @@ public static class DependencyInjectionConfig
         services.AddSingleton(mapper);
 
         services.AddScoped<IUnitOfWork, UnitOfWork>();
+        
         services.AddScoped<IAccountService, AccountService>();
         services.AddScoped<ITokenService, TokenService>();
         services.AddScoped<IUserRepository, UserRepository>();

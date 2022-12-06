@@ -10,6 +10,8 @@ namespace Padrao.Api.DTOs.AutoMapper
         {
             
             CreateMap<Categoria,CategoriaDTO>().ReverseMap();
+            CreateMap<TipoImovel,TipoImovelDTO>().ReverseMap();
+            CreateMap<Imovel,ImovelDTO>().ReverseMap();
             CreateMap<User,UserDTO>().ReverseMap();
             CreateMap<User,UserLoginDTO>().ReverseMap();
             CreateMap<User,UserUpdateDTO>().ReverseMap();
