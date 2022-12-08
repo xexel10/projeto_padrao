@@ -14,7 +14,10 @@ public class ImovelRepository : Repository<Imovel>, IImovelRepository
 
     public async Task<IEnumerable<Imovel>> GetAllImovel()
     {
-        return (IQueryable<Imovel>)await Get().AsNoTracking().ToListAsync();
+        return (IQueryable<Imovel>)await Get().Include(c => c.Categoria)
+                                              .Include(t=> t.TipoImovel)
+                                              .AsNoTracking()
+                                              .ToListAsync();
     }
 
 

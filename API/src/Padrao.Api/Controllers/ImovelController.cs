@@ -31,6 +31,26 @@ namespace Padrao.Api.Controllers
             return imovelDto;
 
         }
+        
+        [HttpGet("teste")]
+        public async Task<ActionResult<IEnumerable<ImovelDTO>>> GetAll()
+        {
+            try
+            {
+                var imovel = await _uof.ImovelRepository.GetAllImovel();
+                var imovelDto = _mapper.Map<List<ImovelDTO>>(imovel);
+                if (imovelDto == null) return NoContent();
+
+
+                return Ok(imovelDto);
+            }
+            catch (Exception ex)
+            {
+                return this.StatusCode(StatusCodes.Status500InternalServerError,
+                    $"Erro ao tentar recuperar eventos. Erro: {ex.Message}");
+            }
+
+        }
 
         [HttpGet("{_id:int}")]
         public async Task<ActionResult<ImovelDTO>> GetByID(int _id)
@@ -46,13 +66,21 @@ namespace Padrao.Api.Controllers
         [HttpPost]
         public ActionResult Post([FromBody] ImovelDTO imovelDto)
         {
-            var imovel = _mapper.Map<Imovel>(imovelDto);
+            try
+            {
+                var imovel = _mapper.Map<Imovel>(imovelDto);
 
-            _uof.ImovelRepository.Add(imovel);
-            _uof.Commit();
+                _uof.ImovelRepository.Add(imovel);
+                _uof.Commit();
 
-            var imovelDTO = _mapper.Map<ImovelDTO>(imovel);
-            return Ok(imovelDTO);
+                var imovelDTO = _mapper.Map<ImovelDTO>(imovel); 
+                return Ok(imovelDTO);
+            }
+            catch (Exception ex)
+            {
+                return this.StatusCode(StatusCodes.Status500InternalServerError,
+                    $"Erro ao tentar adicionar imóvel. Erro: {ex.Message}");
+            }
         }
 
         [HttpPut("{_id:int}")]
@@ -61,10 +89,7 @@ namespace Padrao.Api.Controllers
 
             try
             {
-                if (_id != imovelDto.Id)
-                {
-                    return BadRequest();
-                }
+                if (_id != imovelDto.Id) return BadRequest();
 
                 var imovel = _mapper.Map<Imovel>(imovelDto);
 

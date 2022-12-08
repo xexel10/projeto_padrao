@@ -11,8 +11,8 @@ using Padrao.Data.Context;
 namespace Padrao.Data.Migrations
 {
     [DbContext(typeof(MeuDbContext))]
-    [Migration("20221117233501_Identity")]
-    partial class Identity
+    [Migration("20221207185617_Initial")]
+    partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
