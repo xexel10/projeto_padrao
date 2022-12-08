@@ -16,8 +16,8 @@ public class ImovelRepository : Repository<Imovel>, IImovelRepository
     {
         return (IQueryable<Imovel>)await Get().Include(c => c.Categoria)
                                               .Include(t=> t.TipoImovel)
-                                              .AsNoTracking()
-                                              .ToListAsync();
+                                              .AsNoTracking().ToListAsync();
+
     }
 
 

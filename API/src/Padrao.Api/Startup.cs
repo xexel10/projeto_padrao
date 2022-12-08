@@ -1,12 +1,5 @@
-using System.Text;
-using System.Text.Json.Serialization;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.IdentityModel.Tokens;
-using Microsoft.OpenApi.Models;
 using Padrao.Api.Configurations;
-using Padrao.Business.Models.Identity;
 using Padrao.Data.Context;
 
 namespace Padrao.Api;
@@ -24,7 +17,8 @@ public class Startup
     public void ConfigureServices(IServiceCollection services)
     {
         services.AddDbContext<MeuDbContext>(
-            context => context.UseSqlite(Configuration.GetConnectionString("Default"))
+            context => context.UseLoggerFactory(LoggerFactory.Create(builder => builder.AddConsole()))
+                              .UseSqlite(Configuration.GetConnectionString("Default"))
         );
 
         services.AddIdentityConfig(Configuration);

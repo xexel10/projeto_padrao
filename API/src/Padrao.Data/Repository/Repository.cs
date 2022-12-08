@@ -1,8 +1,7 @@
-using Padrao.Business.Interfaces;
 using Padrao.Data.Context;
 using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
-
+using Padrao.Business.Interfaces;
 
 namespace Padrao.Data.Repository
 {
@@ -17,7 +16,7 @@ namespace Padrao.Data.Repository
 
         public IQueryable<T> Get()
         {
-            return _context.Set<T>().AsNoTracking();
+            return  _context.Set<T>().AsNoTracking();
         }
 
         public async Task<T> GetById(Expression<Func<T, bool>> predicate)
