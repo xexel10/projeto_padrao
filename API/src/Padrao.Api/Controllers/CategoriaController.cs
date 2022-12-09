@@ -5,6 +5,7 @@ using Padrao.Data.Repository;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using AutoMapper;
+using Microsoft.EntityFrameworkCore;
 
 namespace Padrao.Api.Controllers
 {
@@ -24,9 +25,9 @@ namespace Padrao.Api.Controllers
         }
 
         [HttpGet]
-        public ActionResult<IEnumerable<CategoriaDTO>> Get()
+        public async Task<ActionResult<IEnumerable<CategoriaDTO>>> Get()
         {
-            var categoria = _uof.CategoriaRepository.Get().ToList();
+            var categoria = await _uof.CategoriaRepository.Get().ToListAsync();
             var categoriaDto = _mapper.Map<List<CategoriaDTO>>(categoria);
 
             return categoriaDto;
@@ -45,15 +46,23 @@ namespace Padrao.Api.Controllers
         }
 
         [HttpPost]
-        public ActionResult Post([FromBody] CategoriaDTO categoriaDto)
+        public async Task<ActionResult> Post([FromBody] CategoriaDTO CategoriaDto)
         {
-            var categoria = _mapper.Map<Categoria>(categoriaDto);
+            try
+            {
+                var categoria = _mapper.Map<Categoria>(CategoriaDto);
 
-            _uof.CategoriaRepository.Add(categoria);
-            _uof.Commit();
+                _uof.CategoriaRepository.Add(categoria);
+                await _uof.Commit();
 
-            var categoriaDTO = _mapper.Map<CategoriaDTO>(categoria);
-            return Ok(categoriaDTO);
+                var categoriaDTO = _mapper.Map<CategoriaDTO>(categoria); 
+                return Ok(categoriaDTO);
+            }
+            catch (Exception ex)
+            {
+                return this.StatusCode(StatusCodes.Status500InternalServerError,
+                    $"Erro ao tentar adicionar imóvel. Erro: {ex.Message}");
+            }
         }
 
         [HttpPut("{_id:int}")]

@@ -4,6 +4,7 @@ using Padrao.Business.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using AutoMapper;
+using Microsoft.EntityFrameworkCore;
 
 namespace Padrao.Api.Controllers
 {
@@ -23,16 +24,16 @@ namespace Padrao.Api.Controllers
         }
 
         [HttpGet]
-        public ActionResult<IEnumerable<ImovelDTO>> Get()
+        public async Task<ActionResult<IEnumerable<ImovelDTO>>> Get()
         {
-            var imovel = _uof.ImovelRepository.Get().ToList();
+            var imovel = await _uof.ImovelRepository.Get().ToListAsync();
             var imovelDto = _mapper.Map<List<ImovelDTO>>(imovel);
 
             return imovelDto;
 
         }
         
-        [HttpGet("teste")]
+        [HttpGet("All")]
         public async Task<ActionResult<IEnumerable<ImovelDTO>>> GetAll()
         {
             try
@@ -64,14 +65,14 @@ namespace Padrao.Api.Controllers
         }
 
         [HttpPost]
-        public ActionResult Post([FromBody] ImovelDTO imovelDto)
+        public async Task<ActionResult> Post([FromBody] ImovelDTO imovelDto)
         {
             try
             {
                 var imovel = _mapper.Map<Imovel>(imovelDto);
 
                 _uof.ImovelRepository.Add(imovel);
-                _uof.Commit();
+                await _uof.Commit();
 
                 var imovelDTO = _mapper.Map<ImovelDTO>(imovel); 
                 return Ok(imovelDTO);

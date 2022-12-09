@@ -5,6 +5,7 @@ using Padrao.Data.Repository;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using AutoMapper;
+using Microsoft.EntityFrameworkCore;
 
 namespace Padrao.Api.Controllers
 {
@@ -24,9 +25,10 @@ namespace Padrao.Api.Controllers
         }
 
         [HttpGet]
-        public ActionResult<IEnumerable<TipoImovelDTO>> Get()
+        [HttpGet]
+        public async Task<ActionResult<IEnumerable<TipoImovelDTO>>> Get()
         {
-            var tipoImovel = _uof.TipoImovelRepository.Get().ToList();
+            var tipoImovel = await _uof.TipoImovelRepository.Get().ToListAsync();
             var tipoImovelDto = _mapper.Map<List<TipoImovelDTO>>(tipoImovel);
 
             return tipoImovelDto;
@@ -45,15 +47,23 @@ namespace Padrao.Api.Controllers
         }
 
         [HttpPost]
-        public ActionResult Post([FromBody] TipoImovelDTO tipoImovelDto)
+        public async Task<ActionResult> Post([FromBody] TipoImovelDTO TipoImovelDto)
         {
-            var tipoImovel = _mapper.Map<TipoImovel>(tipoImovelDto);
+            try
+            {
+                var tipoImovel = _mapper.Map<TipoImovel>(TipoImovelDto);
 
-            _uof.TipoImovelRepository.Add(tipoImovel);
-            _uof.Commit();
+                _uof.TipoImovelRepository.Add(tipoImovel);
+                await _uof.Commit();
 
-            var tipoImovelDTO = _mapper.Map<TipoImovelDTO>(tipoImovel);
-            return Ok(tipoImovelDTO);
+                var tipoImovelDTO = _mapper.Map<TipoImovelDTO>(tipoImovel); 
+                return Ok(tipoImovelDTO);
+            }
+            catch (Exception ex)
+            {
+                return this.StatusCode(StatusCodes.Status500InternalServerError,
+                    $"Erro ao tentar adicionar imóvel. Erro: {ex.Message}");
+            }
         }
 
         [HttpPut("{_id:int}")]
